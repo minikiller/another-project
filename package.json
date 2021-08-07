@@ -5,14 +5,35 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@progress/kendo-data-query": "^1.5.5",
+    "@progress/kendo-licensing": "^1.2.0",
+    "@progress/kendo-theme-default": "^4.40.1",
+    "@progress/kendo-vue-animation": "^2.3.1",
+    "@progress/kendo-vue-data-tools": "^2.3.1",
+    "@progress/kendo-vue-dateinputs": "^2.3.1",
+    "@progress/kendo-vue-dropdowns": "^2.3.1",
+    "@progress/kendo-vue-grid": "^2.3.1",
+    "@progress/kendo-vue-inputs": "^2.3.1",
+    "@progress/kendo-vue-intl": "^2.3.1",
+    "@progress/kendo-vue-layout": "^2.3.2",
+    "@progress/kendo-vue-popup": "^2.3.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@storybook/addon-actions": "^6.3.6",
+    "@storybook/addon-essentials": "^6.3.6",
+    "@storybook/addon-links": "^6.3.6",
+    "@storybook/cli": "^6.3.6",
+    "@storybook/vue": "^6.3.6",
+    "@storybook/vue3": "^6.3.6",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -23,12 +44,14 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "babel-loader": "^8.2.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
     "prettier": "^2.2.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "vue-loader": "^16.4.1"
   }
 }
