@@ -5,8 +5,11 @@
     </td>
   </tr>
 </template>
+
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'JTableRow',
   props: {
     values: {
@@ -14,12 +17,12 @@ export default {
       required: true
     }
   }
-}
+})
 </script>
 
 <style scoped>
 tr {
-  background-color: white;
+  /* background-color: white; */
   border-radius: 4px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
 }

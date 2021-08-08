@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/vue'
 import JTable from './JTable'
 
 var items = [
@@ -11,14 +10,26 @@ var items = [
   ['Kamren Huffman', 'kamren.huffman@email.com']
 ]
 
-storiesOf('JTable', module).add('with 7 items', () => ({
+export default {
+  title: 'Lerna/JTable',
+  component: JTable,
+  decorators: [() => ({ template: '<div style="margin: 3em;"><story/></div>' })],
+  argTypes: {
+    backgroundColor: { control: 'color' },
+    size: { control: { type: 'select', options: ['small', 'medium', 'large'] } }
+  }
+}
+
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { JTable },
-  template: `
-      <JTable
-        :items="items"
-      />
-    `,
-  data: () => ({
-    items
-  })
-}))
+  template: '<JTable v-bind="args" />',
+  setup () {
+    return { args }
+  }
+})
+
+export const Primary = Template.bind({})
+Primary.args = {
+  items: items
+}
