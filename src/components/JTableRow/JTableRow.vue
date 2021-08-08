@@ -5,7 +5,6 @@
     </td>
   </tr>
 </template>
-
 <script lang="ts">
 export default {
   name: 'JTableRow',
