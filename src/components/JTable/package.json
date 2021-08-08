@@ -1,0 +1,10 @@
+{
+    "name": "@kalix70/j-table",
+    "version": "0.0.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@kalix70/j-table-row": "^0.0.1"
+    }
+}
