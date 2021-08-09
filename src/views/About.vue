@@ -5,6 +5,11 @@
 
   <!-- <test :mydata="products"></test> -->
   <tabstrip :selected="selected" @select="onselect">
+    <tabstripTab :title="'column'">
+      <div>
+        <column-grid></column-grid>
+      </div>
+    </tabstripTab>
     <tabstripTab :title="'render'">
       <div>
         <render-grid></render-grid>
@@ -50,24 +55,34 @@
         :static_columns="staticColumns"
       ></base-grid>
     </tabstripTab>
+    <tabstripTab :title="'changed'">
+      <change-grid
+        :grid_data="products"
+        :static_columns="staticColumns"
+      ></change-grid>
+    </tabstripTab>
   </tabstrip>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
+import ColumnGrid from '@/components/ColumnGrid.vue'
 import MyGrid from '@/components/MyGrid.vue'
 import FilterGrid from '@/components/FilterGrid.vue'
 import GroupGrid from '@/components/GroupGrid.vue'
 import MyGroupGrid from '@/components/MyGroupGrid.vue'
 import BaseGroupGrid from '@/components/BaseGroupGrid.vue'
 import BaseGrid from '@/components/BaseGrid.vue'
+import ChangeGrid from '@/components/ChangeGrid.vue'
 import RenderGrid from '@/components/RenderGrid.vue'
 import { products } from './products'
 import { TabStrip, TabStripTab } from '@progress/kendo-vue-layout'
 
 export default defineComponent({
   components: {
+    ColumnGrid,
     MyGrid,
+    ChangeGrid,
     BaseGrid,
     FilterGrid,
     GroupGrid,
@@ -80,10 +95,16 @@ export default defineComponent({
   setup() {
     const selected = ref(0)
     const staticColumns = [
-      { field: 'ProductID', filterable: false, title: 'ID', width: '50px' },
+      {
+        field: 'ProductID',
+        filterable: false,
+        title: 'ID',
+        width: '50px',
+        hidden: true
+      },
       { field: 'ProductName', title: 'Product Name' },
       { field: 'UnitPrice', filter: 'numeric', title: 'Unit Price' },
-      { field: 'UnitsInStock', title: 'Units In Stock' }
+      { field: 'UnitsInStock', title: 'Units In Stock', hidden: true }
     ]
     const onselect = (data) => {
       selected.value = data.selected

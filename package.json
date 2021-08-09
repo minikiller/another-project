@@ -13,6 +13,7 @@
     "@progress/kendo-data-query": "^1.5.5",
     "@progress/kendo-licensing": "^1.2.0",
     "@progress/kendo-theme-default": "^4.40.1",
+    "@progress/kendo-ui": "^2021.2.616",
     "@progress/kendo-vue-animation": "^2.4.0",
     "@progress/kendo-vue-data-tools": "^2.4.0",
     "@progress/kendo-vue-dateinputs": "^2.4.0",

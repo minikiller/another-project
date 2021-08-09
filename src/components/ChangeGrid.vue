@@ -1,26 +1,23 @@
 <template>
   <div>
     <Grid
+      ref="grid1"
       :style="{ height: '520px' }"
       :data-items="rdata.products"
       :columns="columns"
-      :selected-field="selectedField"
-      @selectionchange="onSelectionChange"
-      @rowclick="onRowClick"
-      @headerselectionchange="onHeaderSelectionChange"
     >
     </Grid>
+    <button @click="onclicked">clicked</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, computed } from 'vue'
+import { defineComponent, PropType, reactive, computed, ref } from 'vue'
 import { Grid } from '@progress/kendo-vue-grid'
 
 import { Product } from '@/models/products.inteface'
 
 export default defineComponent({
-  name: 'CheckboxGrid',
   components: {
     Grid: Grid
   },
@@ -34,8 +31,9 @@ export default defineComponent({
       required: true
     }
   },
-  emits: ['selectChanged'],
-  setup (props, { emit }) {
+  setup (props) {
+    // const data!: kendo.ui.grid
+    const grid1 = ref(null)
     interface ProductSelect extends Product {
       selected: boolean
     }
@@ -66,13 +64,11 @@ export default defineComponent({
     const onSelectionChange = (event) => {
       console.log(event)
       event.dataItem[selectedField] = !event.dataItem[selectedField]
-      emit('selectChanged', rdata.products)
     }
 
     const onRowClick = (event) => {
       console.log(event)
       event.dataItem[selectedField] = !event.dataItem[selectedField]
-      emit('selectChanged', rdata.products)
     }
 
     const onHeaderSelectionChange = (event) => {
@@ -81,16 +77,27 @@ export default defineComponent({
       rdata.products = rdata.products.map((item) => {
         return { ...item, selected: checked }
       })
-      emit('selectChanged', rdata.products)
+    }
+
+    const onclicked = () => {
+      // const me = grid1.value
+      // console.log(me!['columns'])
+      const item = grid1.value!['columns'][0]
+      // item['hidden'] = true
+      // item.hidden = true
+      console.log(item)
+      // console.log((grid1.value!['columns'][0]['hidden'] = true))
     }
 
     return {
+      grid1,
       rdata,
       columns,
       selectedField,
       onRowClick,
       onSelectionChange,
-      onHeaderSelectionChange
+      onHeaderSelectionChange,
+      onclicked
     }
   }
 })
