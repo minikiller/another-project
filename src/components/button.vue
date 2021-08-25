@@ -1,20 +1,25 @@
 <template>
-  <button :class="{ loading: isLoading }" @click="clickButton">
-    <slot></slot>
-    {{ isLoading ? '- loading' : '' }}
-  </button>
+  <div>
+    <k-button ref="mybutton" disabled> Enabled Button</k-button> &nbsp;
+    <k-button :disabled="iseabled">Disabled Button </k-button>
+    <k-button @click="onclick">Disabled Button </k-button>
+  </div>
 </template>
 <script>
+import { Button } from '@progress/kendo-vue-buttons'
+import { ref } from 'vue'
 export default {
-  name: 'MyButton',
-  props: {
-    name: { type: String, required: true },
-    isLoading: { type: Boolean, default: false }
+  components: {
+    'k-button': Button
   },
-  methods: {
-    clickButton() {
-      this.$emit('buttonClicked', `${this.name}-button clicked`)
+  setup() {
+    const mybutton = ref(null)
+    let iseabled = ref(true)
+    const onclick = () => {
+      iseabled.value = false
     }
+    mybutton.value.disabled = true
+    return { mybutton, iseabled, onclick }
   }
 }
 </script>

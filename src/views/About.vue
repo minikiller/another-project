@@ -60,6 +60,10 @@
         :grid_data="products"
         :static_columns="staticColumns"
       ></change-grid>
+      <button @click="changeit">change</button>
+    </tabstripTab>
+    <tabstripTab :title="'icon'">
+      <icon-grid></icon-grid>
     </tabstripTab>
   </tabstrip>
 </template>
@@ -67,6 +71,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import ColumnGrid from '@/components/ColumnGrid.vue'
+import IconGrid from '@/components/develop/IconGrid.vue'
 import MyGrid from '@/components/MyGrid.vue'
 import FilterGrid from '@/components/FilterGrid.vue'
 import GroupGrid from '@/components/GroupGrid.vue'
@@ -81,6 +86,7 @@ import { TabStrip, TabStripTab } from '@progress/kendo-vue-layout'
 export default defineComponent({
   components: {
     ColumnGrid,
+    IconGrid,
     MyGrid,
     ChangeGrid,
     BaseGrid,
@@ -99,18 +105,20 @@ export default defineComponent({
         field: 'ProductID',
         filterable: false,
         title: 'ID',
-        width: '50px',
-        hidden: true
+        width: '50px'
       },
       { field: 'ProductName', title: 'Product Name' },
       { field: 'UnitPrice', filter: 'numeric', title: 'Unit Price' },
-      { field: 'UnitsInStock', title: 'Units In Stock', hidden: true }
+      { field: 'UnitsInStock', title: 'Units In Stock' }
     ]
     const onselect = (data) => {
       selected.value = data.selected
       console.log(data)
     }
-    return { products, staticColumns, onselect, selected }
+    const changeit = () => {
+      staticColumns[2].hidden = true
+    }
+    return { products, staticColumns, onselect, selected, changeit }
   }
 })
 </script>

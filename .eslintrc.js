@@ -22,6 +22,8 @@ module.exports = {
         trailingComma: 'none'
       }
     ],
+    "@typescript-eslint/no-this-alias": ["off"],
+    "space-before-function-paren": ["off"],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }

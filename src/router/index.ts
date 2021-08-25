@@ -2,7 +2,9 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Test from '@/components/Test.vue'
 import Demo from '../views/Demo.vue'
+import MyButton from '@/components/button.vue'
 import ColumnDemo from '../views/ColumnDemo.vue'
+import ShortcutDemo from '@/components/develop/ShortcutDemo.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,6 +16,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/test',
     name: 'Test',
     component: Test
+  },
+  {
+    path: '/button',
+    name: 'Button',
+    component: MyButton
+  },
+  {
+    path: '/shortcut',
+    name: 'ShortcutDemo',
+    component: ShortcutDemo
   },
   {
     path: '/column',

@@ -14,7 +14,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, computed } from 'vue'
+import {
+  defineComponent,
+  PropType,
+  reactive,
+  computed,
+  onMounted,
+  watch
+} from 'vue'
 import { Grid } from '@progress/kendo-vue-grid'
 
 import { Product } from '@/models/products.inteface'
@@ -34,7 +41,19 @@ export default defineComponent({
       required: true
     }
   },
-  emits: ['selectChanged'],
+  emits: ['selectChanged', 'dataChanged'],
+  // watch: {
+  //   grid_data: {
+  //     // This will let Vue know to look inside the array
+  //     deep: true,
+
+  //     // We have to move our method to a handler field
+  //     handler (value) {
+  //       console.log('The list of colors has changed!', value)
+  //     }
+  //   }
+  // },
+
   setup (props, { emit }) {
     interface ProductSelect extends Product {
       selected: boolean
@@ -48,10 +67,18 @@ export default defineComponent({
       products: initData as ProductSelect[]
     })
 
+    onMounted(() => {
+      emit('selectChanged', rdata.products)
+    })
+
     const columns = computed(() => {
-      const notSelectedIndex = rdata.products.findIndex((i) => {
-        return i.selected === false
-      })
+      let notSelectedIndex
+      if (rdata.products.length === 0) notSelectedIndex = 0
+      else {
+        notSelectedIndex = rdata.products.findIndex((i) => {
+          return i.selected === false
+        })
+      }
       return [
         {
           field: 'selected',
@@ -77,12 +104,23 @@ export default defineComponent({
 
     const onHeaderSelectionChange = (event) => {
       console.log(event)
-      let checked = event.event.target.checked
+      const checked = event.event.target.checked
       rdata.products = rdata.products.map((item) => {
         return { ...item, selected: checked }
       })
       emit('selectChanged', rdata.products)
     }
+
+    // watch(rdata.products, (selection, prevSelection) => {
+    //   /* ... */
+    //   console.log(selection, prevSelection)
+    // })
+    watch(
+      () => [...rdata.products],
+      (currentValue, oldValue) => {
+        emit('dataChanged', currentValue)
+      }
+    )
 
     return {
       rdata,

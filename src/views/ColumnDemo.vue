@@ -1,6 +1,6 @@
 <template>
   <div>
-    <column-grid></column-grid>
+    <column-grid ref="grid"></column-grid>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default defineComponent({
     ColumnGrid
   },
   setup() {
+    const grid = ref()
     const selected = ref(0)
     const staticColumns = [
       {
@@ -30,7 +31,8 @@ export default defineComponent({
       selected.value = data.selected
       console.log(data)
     }
-    return { staticColumns, onselect, selected }
+
+    return { staticColumns, onselect, selected, grid }
   }
 })
 </script>

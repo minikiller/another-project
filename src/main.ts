@@ -3,5 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import '@progress/kendo-theme-default/dist/all.css'
+import { GlobalEvents } from 'vue-global-events'
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App)
+app.use(store).use(router).mount('#app')
+// register globally
+app.component('GlobalEvents', GlobalEvents)

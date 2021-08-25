@@ -1,6 +1,7 @@
 <template>
   <div>
     <Grid
+      ref="myGrid"
       :style="{ height: '520px' }"
       :data-items="rdata.products"
       :columns="columns"
@@ -10,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, computed } from 'vue'
+import { defineComponent, PropType, reactive, computed, ref } from 'vue'
 import { Grid } from '@progress/kendo-vue-grid'
 
 import { Product } from '@/models/products.inteface'
@@ -29,7 +30,8 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
+  setup (props) {
+    const myGrid = ref<typeof Grid | null>(null)
     interface ProductSelect extends Product {
       selected: boolean
     }

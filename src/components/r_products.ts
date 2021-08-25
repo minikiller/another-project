@@ -2,12 +2,6 @@ import { Product } from '@/models/products.inteface'
 
 export const rightProducts: Product[] = [
   {
-    ProductID: 10,
-    ProductName: 'Ikura',
-    UnitPrice: 31.0,
-    UnitsInStock: 31
-  },
-  {
     ProductID: 11,
     ProductName: 'Queso Cabrales',
     UnitPrice: 21.0,
@@ -36,35 +30,5 @@ export const rightProducts: Product[] = [
     ProductName: 'Genen Shouyu',
     UnitPrice: 15.5,
     UnitsInStock: 39
-  },
-  {
-    ProductID: 16,
-    ProductName: 'Pavlova',
-    UnitPrice: 17.45,
-    UnitsInStock: 29
-  },
-  {
-    ProductID: 17,
-    ProductName: 'Alice Mutton',
-    UnitPrice: 39.0,
-    UnitsInStock: 0
-  },
-  {
-    ProductID: 18,
-    ProductName: 'Carnarvon Tigers',
-    UnitPrice: 62.5,
-    UnitsInStock: 42
-  },
-  {
-    ProductID: 19,
-    ProductName: 'Teatime Chocolate Biscuits',
-    UnitPrice: 9.2,
-    UnitsInStock: 25
-  },
-  {
-    ProductID: 20,
-    ProductName: "Sir Rodney's Marmalade",
-    UnitPrice: 81.0,
-    UnitsInStock: 40
   }
 ]

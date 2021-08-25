@@ -33,7 +33,8 @@ export default defineComponent({
   },
   setup (props) {
     // const data!: kendo.ui.grid
-    const grid1 = ref(null)
+    const grid1 = ref<typeof Grid | null>(null)
+
     interface ProductSelect extends Product {
       selected: boolean
     }
@@ -42,9 +43,6 @@ export default defineComponent({
       return { ...item, selected: false }
     })
     const selectedField = 'selected'
-    const rdata = reactive({
-      products: initData as ProductSelect[]
-    })
 
     const columns = computed(() => {
       const notSelectedIndex = rdata.products.findIndex((i) => {
@@ -53,12 +51,16 @@ export default defineComponent({
       return [
         {
           field: 'selected',
-          width: '50px',
+          width: '50px',  
           headerSelectionValue: notSelectedIndex === -1,
           filterable: false
         },
         ...props.static_columns
       ]
+    })
+    const rdata = reactive({
+      products: initData as ProductSelect[],
+      columns
     })
 
     const onSelectionChange = (event) => {
@@ -82,10 +84,12 @@ export default defineComponent({
     const onclicked = () => {
       // const me = grid1.value
       // console.log(me!['columns'])
-      const item = grid1.value!['columns'][0]
+      const item = grid1.value.columns
+      // item[1].hidden11 = true
       // item['hidden'] = true
       // item.hidden = true
       console.log(item)
+      // props.static_columns[2].hidden = true
       // console.log((grid1.value!['columns'][0]['hidden'] = true))
     }
 
